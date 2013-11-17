@@ -382,6 +382,8 @@ public class ContactsProvider2 extends AbstractContactsProvider
 
     private static final int PINNED_POSITION_UPDATE = 24001;
 
+    private static final String VOICE_CAPABLE_PROPERTY = "persist.sys.voice.capable";
+
     // Inserts into URIs in this map will direct to the profile database if the parent record's
     // value (looked up from the ContentValues object with the key specified by the value in this
     // map) is in the profile ID-space (see {@link ProfileDatabaseHelper#PROFILE_ID_SPACE}).
@@ -8534,8 +8536,9 @@ public class ContactsProvider2 extends AbstractContactsProvider
         // "voice capable" flag.
         // This flag currently comes from a resource (which is
         // overrideable on a per-product basis):
-        return getContext().getResources()
-                .getBoolean(com.android.internal.R.bool.config_voice_capable);
+        //return getContext().getResources()
+        //        .getBoolean(com.android.internal.R.bool.config_voice_capable);
+        return SystemProperties.getBoolean(VOICE_CAPABLE_PROPERTY, true);
         // ...but this might eventually become a PackageManager "system
         // feature" instead, in which case we'd do something like:
         // return
